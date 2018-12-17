@@ -1,0 +1,19 @@
+marker = im2double(imread('media/marker.JPG'));
+frame = im2double(imread('media/test_frame_small.jpg'));
+
+[ X1 Y1 X2 Y2 ] = define_correspondence( frame, marker, 20 );
+
+show_correspondence(frame, marker, X1, Y1, X2, Y2);
+
+T = ransac(X1, Y1, X2, Y2);
+mask = ones();
+mask3 = ones();
+
+tform = projective2d(T);
+im2 = imwarp(marker,tform);
+mask = imwarp(mask,tform);
+
+[ out mask2 ] = composite(frame, im2, maskA, mask);
+
+imshow(im2);
+
