@@ -1,4 +1,4 @@
-function [ out_img ] = compose_images(base_img,comp_img, H)
+function [ out_img ] = composite_images(base_img, comp_img, H)
 %UNTITLED4 Composes comp_img onto base_img according to homography H, using
 %          poisson blending for realism.
 %
