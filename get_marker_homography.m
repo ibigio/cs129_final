@@ -8,6 +8,7 @@ function [ transform ] = get_marker_homography(input_img,marker)
 %   Output:
 %       - transform :           the projective transform that takes marker to
 %       input_img
+[marker, input_img] = get_cropped_images(marker,input_img);
 
 marker = rgb2gray(marker);
 input_img = rgb2gray(input_img);
@@ -30,6 +31,6 @@ matchedPtsDistorted = validPtsDistorted(index_pairs(:,2));
 outputView = imref2d(size(input_img));
 Ir = imwarp(marker,transform,'OutputView',outputView);
 figure; imshow(Ir); 
-title('Recovered image');
+title('DEBUG OUTPUT: image after transform applied');
 end
 
