@@ -1,0 +1,2 @@
+function homography_testing
+get_marker_homography(imread('marker2.jpg'),imread('cs129_final/testing/media/photo8.jpg'))
