@@ -1,4 +1,4 @@
-function [ patch ] = get_patch_to_insert_synthesis( method, tilesize, overlapsize, to_fill, to_fill_mask, texture )
+function [ patch ] = get_patch_to_insert_synthesis( method, tilesize, overlapsize, to_fill, to_fill_mask, texture, border)
 % Texture Synthesis stencil code
 % Written by Emanuel Zgraggen for CS 129 Computational Photography, Brown U.
 %
@@ -28,7 +28,7 @@ end
 
 % best ssd patch + min cut
 if method == 3    
-    base_patch = get_ssd_patch(tilesize, 200, to_fill, to_fill_mask, texture, 0.2);
+    base_patch = get_ssd_patch(tilesize, 200, to_fill, to_fill_mask, texture, 0.2, border);
     % vertical and horizontal overlaps
     diffs = (to_fill - base_patch).^2;
     
@@ -50,11 +50,11 @@ end
 
 end
 
-function [ patch ] = get_ssd_patch(tilesize, reps, to_fill, to_fill_mask, texture, tolerance)
+function [ patch ] = get_ssd_patch(tilesize, reps, to_fill, to_fill_mask, texture, tolerance, border)
     min_diff = inf;
     coords = [0,0];
     for i=1:reps
-        [sample, y, x] = get_random_img_patch(texture, tilesize);
+        [sample, y, x] = get_random_img_patch(texture, tilesize, border);
         
         diff_mat = ((sample - to_fill) .* to_fill_mask) .^ 2;
         diff = sum(diff_mat(:));

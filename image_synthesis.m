@@ -1,4 +1,4 @@
-function [ out ] = image_synthesis( input, outsize, tilesize, overlapsize, method, isdebug )
+function [ out ] = image_synthesis( input, outsize, tilesize, overlapsize, method, isdebug, border)
 % Texture Synthesis stencil code
 % Written by Emanuel Zgraggen for CS 129 Computational Photography, Brown U.
 %
@@ -32,7 +32,7 @@ for y=1:tilesize - overlapsize:outsize(1)
         to_fill_mask = imout_mask(y:y + tilesize - 1, x:x + tilesize - 1);
         
         % get the patch we want to insert at current location 
-        patch_to_insert = get_patch_to_insert_synthesis(method, tilesize, overlapsize, to_fill, to_fill_mask, input);
+        patch_to_insert = get_patch_to_insert_synthesis(method, tilesize, overlapsize, to_fill, to_fill_mask, input, border);
         
         % update result image and mask
         imout(y:y + tilesize - 1, x:x + tilesize - 1, :) = patch_to_insert;
