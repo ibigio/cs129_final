@@ -27,11 +27,11 @@ matchedPtsDistorted = validPtsDistorted(index_pairs(:,2));
 originalLocations = matchedPtsOriginal.Location;
 distortedLocations = matchedPtsDistorted.Location;
 
-image_ok_x = originalLocations(:,1);
-image_ok_y = distortedLocations(:,2);
+image_ok_x = originalLocations(1);
+image_ok_y = distortedLocations(2);
 
-marker_ok_x = originalLocations(:,1);
-marker_ok_y = distortedLocations(:,2);
+marker_ok_x = originalLocations(1);
+marker_ok_y = distortedLocations(2);
 
 [min_x1, leftIndex] = min(image_ok_x);
 [max_x1, rightIndex] = max(image_ok_x);
@@ -42,8 +42,8 @@ cropped_im2 = imcrop(input_img,...
     [marker_ok_x(leftIndex), marker_ok_y(topIndex), ...
     marker_ok_x(rightIndex)-marker_ok_x(leftIndex), ...
     marker_ok_y(botIndex)-marker_ok_y(topIndex)]);
-% figure(909);
-% imshow(cropped_im2)
+figure(909);
+imshow(cropped_im2)
 % im2_mask = zeros(size(im2g));
 % im2_mask(:,x2_ok(leftIndex):x2_ok(rightIndex)) = 1;
 % im2_mask(y2_ok(topIndex):y2_ok(botIndex),:) = im2_mask(y2_ok(topIndex):y2_ok(botIndex),:) + 1;
