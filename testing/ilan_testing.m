@@ -14,9 +14,16 @@ s_c = size(cover);
 % Instead, just load homography:
 load T.mat;
 
-[ im1, im2 , mask1, mask2] = warp_image(frame, cover, T, 0);
+test = composite_images(frame, cover, T);
+imshow(test);
 
-[ out, mask ] = composite(im1, im2, mask1, mask2);
-
-imshow(out);
+% [ im1, im2 , mask1, mask2] = warp_image(cover, frame, inv(T), 0);
+% 
+% imshow(im2);
+% 
+% %[ im1, im2 , mask1, mask2] = warp_image(frame, cover, T, 0);
+% 
+% [ out, mask ] = composite(im1, im2, mask1, mask2);
+% 
+% imshow(out);
 
