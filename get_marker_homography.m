@@ -8,7 +8,7 @@ function [ transform ] = get_marker_homography(input_img,marker)
 %   Output:
 %       - transform :           the projective transform that takes marker to
 %       input_img
-[marker, input_img] = get_cropped_images(marker,input_img);
+% [marker, input_img] = get_cropped_images(marker,input_img);
 
 marker = rgb2gray(marker);
 input_img = rgb2gray(input_img);

@@ -1,4 +1,4 @@
-function [cropped_im1, cropped_im2, im2_mask] = get_cropped_images(im1, im2)
+function [cropped_im1, cropped_im2, im_2_cut] = get_cropped_images(im1, im2)
 
 %   im1 = imread('marker.JPG') ;
 %   im2 = imread('photo8.jpg') ;
@@ -79,9 +79,16 @@ cropped_im2 = imcrop(im2,...
     y2_ok(botIndex)-y2_ok(topIndex)]);
 
 im2_mask = zeros(size(im2g));
-im2_mask(:,x2_ok(leftIndex):x2_ok(rightIndex)) = 1;
-im2_mask(y2_ok(topIndex):y2_ok(botIndex),:) = im2_mask(y2_ok(topIndex):y2_ok(botIndex),:) + 1;
-im2_mask = im2_mask > 1;
+im2_mask(leftIndex:rightIndex,:) = 1;
+im2_mask(:,) = 1;
+
+
+
+a = zeros(500,500);
+a(50:400,:) = 1;
+a(:,60:150)= 1 + a(:,60:150);
+a= a>1;
+imshow(a)
 
 function err = residual(H)
  u = H(1) * X1(1,ok) + H(4) * X1(2,ok) + H(7) ;
