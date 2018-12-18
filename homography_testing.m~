@@ -18,11 +18,13 @@ stats = regionprops(comp(:,:,1),'centroid');
 [rNum, cNum, ~] = size(image);
 [yy, xx] = ndgrid((1:rNum)-centerY, (1:cNum)-centerX);
 
+
+
 mask1 = xx < -windowWidth/2 | xx > windowWidth/2 | ...
     yy < -windowWidth/2 | yy > windowWidth/2;
+mask1 = logical(1-mask1);
 figure; imshow(mask1)
-composited = composite_images(mask, one, transform.T);
-cutout = image(mask1);
+cutout = image.*mask1;
 
 
 
