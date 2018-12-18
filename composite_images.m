@@ -26,6 +26,14 @@ function [ out_img ] = composite_images(base_img, comp_img, H)
     mask2(1:h2,1:w2,:) = maskB;
     mask2 = imdilate(mask2, true(15));
     
+    figure(20)
+    imshow(out2);
+    
+    figure(30)
+    imshow(out1)
+    
+    disp('Blending...')
+    
     out_img = imblend(out2, mask2, out1);
 end
 
